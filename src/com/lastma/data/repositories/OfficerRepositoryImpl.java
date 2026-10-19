@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OfficerRepositoryImpl implements OfficerRepository {
-    private List<Officer> officers = new ArrayList<Officer>();
-    private int officerCount = 0;
+    private static final List<Officer> officers = new ArrayList<Officer>();
+    private static int officerCount = 0;
 
     @Override
     public Officer save(Officer officer) {
@@ -33,19 +33,25 @@ public class OfficerRepositoryImpl implements OfficerRepository {
     }
 
     @Override
+    public Officer findByEmail(String email) {
+        for(int counter = 0; counter < officers.size(); counter++) {
+            if(officers.get(counter).getEmail().equals(email)) {
+                return officers.get(counter);
+            }
+        }
+        return null;
+    }
+
+    @Override
     public List<Officer> findAll() {
         return officers;
     }
 
     @Override
     public void deleteById(int officerId) {
-        for(int counter = 0; counter < officers.size(); counter++) {
-            if(officers.get(counter).getId() == officerId) {
-                officers.remove(counter);
-                officerCount--;
-                break;
-            }
-        }
+        Officer officer = findById(officerId);
+        officers.remove(officer);
+        officerCount--;
     }
 
     @Override

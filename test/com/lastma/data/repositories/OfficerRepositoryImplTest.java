@@ -17,6 +17,8 @@ class OfficerRepositoryImplTest {
         public void setUp() {
             officerRepository = new OfficerRepositoryImpl();
             officer = new Officer();
+            officerRepository.deleteAll();
+
         }
 
 
@@ -106,6 +108,7 @@ class OfficerRepositoryImplTest {
 
             boolean foundOfficer = officerRepository.existsById(2);
             assertTrue(foundOfficer);
+
 
         }
 

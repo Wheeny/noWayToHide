@@ -1,6 +1,7 @@
 package com.lastma.data.repositories;
 
 import com.lastma.data.models.Driver;
+import com.lastma.data.models.Officer;
 
 import java.util.List;
 
@@ -10,6 +11,8 @@ public interface DriverRepository {
     long count();
 
     Driver findById(int id);
+
+    public Driver findByEmail(String email);
 
     List<Driver> findAll();
 

@@ -1,56 +1,31 @@
-package com.lastma.data.models;
 
-import java.time.Year;
+    package com.lastma.data.models;
 
-public class Vehicle {
+    public class Vehicle {
+        private int id;
+        private String registrationNumber;
+        private String make;
+        private String model;
+        private String colour;
+        private int driverId;
 
-    private String brand;
-    private String model;
-    private Year year;
-    private VehicleType Type;
-    private int id;
+        public int getId() { return id; }
+        public void setId(int id) { this.id = id; }
 
+        public String getRegistrationNumber() { return registrationNumber; }
+        public void setRegistrationNumber(String registrationNumber) { this.registrationNumber = registrationNumber; }
 
-    public int getId() {
-        return id;
-    }
+        public String getMake() { return make; }
+        public void setMake(String make) { this.make = make; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+        public String getModel() { return model; }
+        public void setModel(String model) { this.model = model; }
 
-    public String getBrand() {
-        return brand;
-    }
+        public String getColour() { return colour; }
+        public void setColour(String colour) { this.colour = colour; }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public Year getYear() {
-        return year;
-    }
-
-    public void setYear(Year year) {
-        this.year = year;
-    }
-
-    public VehicleType getType() {
-        return Type;
-    }
-
-    public void setType(VehicleType type) {
-        Type = type;
+        public int getDriverId() { return driverId; }
+        public void setDriverId(int motoristId) { this.driverId = driverId; }
     }
 
 
-
-}

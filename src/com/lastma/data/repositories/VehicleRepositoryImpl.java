@@ -7,8 +7,8 @@ import java.util.List;
 
 public class VehicleRepositoryImpl implements VehicleRepository {
   
-        private List<Vehicle> vehicles = new ArrayList<Vehicle>();
-        private int vehicleCount = 0;
+        private static List<Vehicle> vehicles = new ArrayList<Vehicle>();
+        private static int vehicleCount = 0;
 
         @Override
         public Vehicle save(Vehicle vehicle) {
@@ -31,6 +31,30 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             }
             return null;
         }
+
+
+    @Override
+    public Vehicle findByRegistrationNumber(String regNum) {
+        for (int counter = 0; counter < vehicles.size(); counter++) {
+            if (vehicles.get(counter).getRegistrationNumber().equalsIgnoreCase(regNum)) {
+                return vehicles.get(counter);
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public List<Vehicle> findByDriverId(int driverId) {
+        List<Vehicle> result = new ArrayList<>();
+        for (int counter = 0; counter < vehicles.size(); counter++) {
+            if (vehicles.get(counter).getDriverId() == driverId) {
+                result.add(vehicles.get(counter));
+            }
+        }
+        return result;
+    }
+
 
         @Override
         public List<Vehicle> findAll() {

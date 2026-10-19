@@ -12,6 +12,10 @@ public interface VehicleRepository {
 
         Vehicle findById(int id);
 
+        Vehicle findByRegistrationNumber(String regNum);
+
+        List<Vehicle> findByDriverId(int motoristId);
+
         List<Vehicle> findAll();
 
         void deleteById(int vehicleId);

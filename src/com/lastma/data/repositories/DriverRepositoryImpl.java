@@ -1,13 +1,14 @@
 package com.lastma.data.repositories;
 
 import com.lastma.data.models.Driver;
+import com.lastma.data.models.Officer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DriverRepositoryImpl implements DriverRepository {
-    private List<Driver> drivers = new ArrayList<Driver>();
-    private int driverCount = 0;
+    private static List<Driver> drivers = new ArrayList<Driver>();
+    private static int driverCount = 0;
 
     @Override
     public Driver save(Driver driver) {
@@ -25,6 +26,16 @@ public class DriverRepositoryImpl implements DriverRepository {
     public Driver findById(int id) {
         for(int counter = 0; counter < drivers.size(); counter++) {
             if(drivers.get(counter).getId() == id) {
+                return drivers.get(counter);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Driver findByEmail(String email) {
+        for(int counter = 0; counter < drivers.size(); counter++) {
+            if(drivers.get(counter).getEmail().equals(email)) {
                 return drivers.get(counter);
             }
         }

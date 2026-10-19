@@ -13,6 +13,8 @@ public interface OfficerRepository {
 
     Officer findById(int id);
 
+    Officer findByEmail(String email);
+
     List<Officer> findAll();
 
     void deleteById(int officerId);

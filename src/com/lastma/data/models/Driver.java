@@ -5,6 +5,16 @@ public class Driver {
     private String email;
     private int id;
     private String carPlateNumber;
+    private String phoneNumber;
+
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getFullName() {
         return fullName;
@@ -37,4 +47,5 @@ public class Driver {
     public void setCarPlateNumber(String carPlateNumber) {
         this.carPlateNumber = carPlateNumber;
     }
+
 }
