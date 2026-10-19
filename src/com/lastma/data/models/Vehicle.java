@@ -25,7 +25,7 @@
         public void setColour(String colour) { this.colour = colour; }
 
         public int getDriverId() { return driverId; }
-        public void setDriverId(int motoristId) { this.driverId = driverId; }
+        public void setDriverId(int driverId) { this.driverId = driverId; }
     }
 
 
