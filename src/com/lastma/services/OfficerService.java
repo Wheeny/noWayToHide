@@ -1,12 +1,15 @@
 package com.lastma.services;
 
 import com.lastma.data.models.Officer;
+import com.lastma.dtos.requests.OfficerLoginRequest;
+import com.lastma.dtos.requests.RegisterOfficerRequest;
+import com.lastma.dtos.responses.OfficerLoginResponse;
 
 public interface OfficerService {
 
-    void register(String fullName, String email, String password);
+    void register(RegisterOfficerRequest request);
 
-    Officer login(String email, String password);
+    OfficerLoginResponse login(OfficerLoginRequest loginRequest);
 
     Officer findOfficerById(int id);
 }
