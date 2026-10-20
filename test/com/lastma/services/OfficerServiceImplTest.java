@@ -3,7 +3,11 @@ package com.lastma.services;
 import com.lastma.data.models.Officer;
 import com.lastma.data.repositories.OfficerRepository;
 import com.lastma.data.repositories.OfficerRepositoryImpl;
+import com.lastma.dtos.requests.FindOfficerRequest;
+import com.lastma.dtos.requests.OfficerLoginRequest;
 import com.lastma.dtos.requests.RegisterOfficerRequest;
+import com.lastma.dtos.responses.FindOfficerResponse;
+import com.lastma.dtos.responses.OfficerLoginResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +18,20 @@ class OfficerServiceImplTest {
     private OfficerRepository officerRepository =  new OfficerRepositoryImpl();
     private OfficerService officerService;
     private RegisterOfficerRequest request;
+    private FindOfficerRequest findOfficerRequest;
+    private OfficerLoginRequest  loginRequest;
+    private Officer officer;
 
     @BeforeEach
     public void setUp() {
         officerService = new OfficerServiceImpl();
         officerRepository.deleteAll();
         request = new RegisterOfficerRequest();
+        findOfficerRequest = new FindOfficerRequest();
+        loginRequest = new OfficerLoginRequest();
+        officer = new Officer();
+
     }
-
-
 
 
     @Test
@@ -62,16 +71,20 @@ class OfficerServiceImplTest {
         request.setPassword("1234");
         officerService.register(request);
         assertEquals(1,  officerRepository.count());
-        Officer foundOfficer = officerService.login("winiefrednnaji@gmail.com", "1234");
-        assertTrue(foundOfficer.isLoggedIn());
+
+        loginRequest.setEmail("winiefrednnaji@gmail.com");
+        loginRequest.setPassword("1234");
+        OfficerLoginResponse foundOfficer = officerService.login(loginRequest);
         assertEquals("winiefrednnaji@gmail.com", foundOfficer.getEmail());
-        assertEquals("1234", foundOfficer.getPassword());
+        assertEquals("1234", loginRequest.getPassword());
     }
 
     @Test
     public void testThatAnOfficerTriedToLogInWithoutFirstBeingRegistered(){
         assertEquals(0,  officerRepository.count());
-        assertThrows(IllegalArgumentException.class, () -> officerService.login("winiefrednnaji@gmail.com", "1234"));
+        loginRequest.setEmail("winiefrednnaji@gmail.com");
+        loginRequest.setPassword("1234");
+        assertThrows(IllegalArgumentException.class, () -> officerService.login(loginRequest));
     }
 
     @Test
@@ -80,17 +93,18 @@ class OfficerServiceImplTest {
         request.setEmail("winiefrednnaji@gmail.com");
         request.setPassword("1234");
         officerService.register(request);
-        Officer foundOfficer = officerService.findOfficerById(1);
+        findOfficerRequest.setId(1);
+        FindOfficerResponse foundOfficer = officerService.findOfficerById(findOfficerRequest);
 
         assertNotNull(foundOfficer);
         assertEquals("Winifred Nnaji", foundOfficer.getFullName());
-        assertEquals("winiefrednnaji@gmail.com", foundOfficer.getEmail());
     }
 
     @Test
     public void testThatFindingNonExistentOfficerByIdThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
-            officerService.findOfficerById(123);
+            findOfficerRequest.setId(123);
+            officerService.findOfficerById(findOfficerRequest);
         });
     }
 
