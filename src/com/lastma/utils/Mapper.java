@@ -34,7 +34,7 @@ public class Mapper {
 
     public static RegisterVehicleResponse MapToRegisterVehicle(RegisterVehicleRequest registerVehicleRequest) {
 
-        RegisterVehicleResponse vehicle = new Vehicle();
+        RegisterVehicleResponse vehicle = new RegisterVehicleResponse();
         vehicle.setRegistrationNumber(registerVehicleRequest.getRegistrationNumber());
         vehicle.setMake(registerVehicleRequest.getMake());
         vehicle.setModel(registerVehicleRequest.getModel());
