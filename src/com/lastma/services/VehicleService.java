@@ -1,14 +1,18 @@
 package com.lastma.services;
 
 import com.lastma.data.models.Vehicle;
+import com.lastma.dtos.requests.RegisterVehicleRequest;
+import com.lastma.dtos.responses.RegisterVehicleResponse;
+import com.lastma.dtos.responses.VehicleResponse;
+
 import java.util.List;
 
     public interface VehicleService {
 
-        void registerVehicle(String registrationNumber, String make, String model, String colour, int motoristId);
+        RegisterVehicleResponse registerVehicle(RegisterVehicleRequest registerVehicleRequest);
 
-        Vehicle findVehicleByRegistrationNumber(String regNum);
+        VehicleResponse findVehicleByRegistrationNumber(String regNum);
 
-        List<Vehicle> findVehiclesByDriverId(int motoristId);
+        List<VehicleResponse>findVehiclesByDriverId(int motoristId);
     }
 
