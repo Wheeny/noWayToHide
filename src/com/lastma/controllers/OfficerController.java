@@ -16,33 +16,30 @@ public class OfficerController {
     public RegisterOfficerResponse officerRegisterController(RegisterOfficerRequest request) {
         RegisterOfficerResponse response = null;
         try {
-            response = officerService.register(request);
+            return officerService.register(request);
         } catch (IllegalArgumentException error) {
-            System.out.println("Registration failed: " + error.getMessage());
+            System.out.println("Registration Error: " + error.getMessage());
+            return null;
         }
-        return response;
     }
 
     private OfficerLoginResponse officerLoginController(OfficerLoginRequest loginRequest){
         OfficerLoginResponse response = null;
         try {
-            response = officerService.login(loginRequest);
+            return officerService.login(loginRequest);
+        } catch (IllegalArgumentException error) {
+            System.out.println("Login Error: " + error.getMessage());
+            return null;
         }
-        catch (IllegalArgumentException error) {
-            System.out.println("Login failed: " + error.getMessage());
-        }
-        return response;
     }
 
-    private FindOfficerResponse officerFindOfficerById(FindOfficerRequest findOfficerRequest){
-        FindOfficerResponse response = null;
+    private FindOfficerResponse officerFindOfficerById(FindOfficerRequest findOfficerRequest) {
         try {
-            response = officerService.findOfficerById(findOfficerRequest);
+            return officerService.findOfficerById(findOfficerRequest);
+        } catch (IllegalArgumentException error) {
+            System.out.println("Lookup Error: " + error.getMessage());
+            return null;
         }
-        catch (IllegalArgumentException error) {
-            System.out.println("Find officer failed: " + error.getMessage());
-        }
-        return response;
     }
 
 }
