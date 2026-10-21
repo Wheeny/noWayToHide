@@ -9,7 +9,14 @@ public enum ViolationType {
     ONE_WAY(25_000),
     ;
 
+    private final int fee;
+
     ViolationType(int fee) {
+        this.fee = fee;
+    }
+
+    public int getFee() {
+        return fee;
     }
 
 }
