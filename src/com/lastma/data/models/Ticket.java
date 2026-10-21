@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class Ticket {
     private int id;
-    private ViolationType type;
+    private int vehicleId;
+    private ViolationType violationType;
     private int violationFee;
     private Date issuedDate;
     private Date dueDate;
@@ -17,12 +18,16 @@ public class Ticket {
         this.id = id;
     }
 
-    public ViolationType getType() {
-        return type;
+    public int getVehicleId() { return vehicleId; }
+
+    public void setVehicleId(int vehicleId) { this.vehicleId = vehicleId; }
+
+    public ViolationType getViolationType() {
+        return violationType;
     }
 
-    public void setType(ViolationType type) {
-        this.type = type;
+    public void setViolationType(ViolationType violationType) {
+        this.violationType = violationType;
     }
 
     public int getViolationFee() {

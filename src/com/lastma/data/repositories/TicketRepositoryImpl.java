@@ -7,8 +7,8 @@ import java.util.List;
 
 public class TicketRepositoryImpl implements TicketRepository {
     
-        private List<Ticket> tickets = new ArrayList<Ticket>();
-        private int ticketCount = 0;
+        private static List<Ticket> tickets = new ArrayList<Ticket>();
+        private static int ticketCount = 0;
 
         @Override
         public Ticket save(Ticket ticket) {
@@ -31,6 +31,17 @@ public class TicketRepositoryImpl implements TicketRepository {
             }
             return null;
         }
+
+    @Override
+    public List<Ticket> findByVehicleId(int vehicleId) {
+        List<Ticket> result = new ArrayList<>();
+        for (int count = 0; count < tickets.size(); count++) {
+            if (tickets.get(count).getVehicleId() == vehicleId) {
+                result.add(tickets.get(count));
+            }
+        }
+        return result;
+    }
 
         @Override
         public List<Ticket> findAll() {

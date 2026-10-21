@@ -12,6 +12,8 @@ public interface TicketRepository {
 
         Ticket findById(int id);
 
+        List<Ticket> findByVehicleId(int vehicleId);
+
         List<Ticket> findAll();
 
         void deleteById(int ticketId);
